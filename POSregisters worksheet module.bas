@@ -4,7 +4,7 @@ Sub DeleteRows()
     Dim i As Long
 
     ' Set the worksheet
-    Set ws = ThisWorkbook.Sheets("POSregisters") ' Change to your sheet name
+    Set ws = ThisWorkbook.Sheets("POSregisters")
 
     ' Start from the last row and go up
     For i = ws.Cells(ws.Rows.Count, "F").End(xlUp).Row To 1 Step -1
