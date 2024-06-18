@@ -1,7 +1,7 @@
 ' Description: This module contains the code for the FORM worksheet module.
 Private Sub Worksheet_Change(ByVal Target As Range)
     On Error Resume Next
-    ' Check if the form is loading or if the form or POSList is not set
+    ' Check if the form is loading or if the POSList is not set
     If theFormIsLoading Or POSList Is Nothing Then
         Exit Sub
     End If
