@@ -2,7 +2,9 @@
 Public wsForm As Worksheet
 Public wsCameras As Worksheet
 Public wsPOSregisters As Worksheet
+Public wsRegions As Worksheet
 Public storeNum As Range
+Public camRegions As Range
 Public regStore As Range
 Public regNum As Range
 Public NVRCell As Range
@@ -19,6 +21,7 @@ Public camCell As Range
 Public border As Variant
 Public versionNum as Double
 
+
 Public Sub InitializeForm()
     ' The version number should be updated every time the code is updated.
     ' The version number is the date & time of update in the format YYYYMMDD.HHMM (24 hours, not "AM/PM").
@@ -26,9 +29,10 @@ Public Sub InitializeForm()
 
     ' Initialize variables
     Set wsForm = ThisWorkbook.Sheets("FORM")
-    Set wsCameras = ThisWorkbook.Sheets("Cameras")
     Set wsPOSregisters = ThisWorkbook.Sheets("POSregisters")
+    Set wsRegions = ThisWorkbook.Sheets("Regions")
     Set storeNum = wsForm.Range("A8")
+    Set camRegions = wsRegions.Range("A:A")
     Set regStore = wsPOSregisters.Range("E:E")
     Set regNum = wsPOSregisters.Range("F:F")
     theFormIsLoading = True
