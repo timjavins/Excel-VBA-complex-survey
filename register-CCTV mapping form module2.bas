@@ -1,6 +1,8 @@
 ' Description: Code module 2 for the Register-CCTV Mapping Form
 Public Sub LoadForm()
 ' TO DO: Add a MsgBox to display the number of potential register numbers, perhaps with context and reassuring messages.
+' TO DO: Since all the sheets are organized by store number, change the code to stop searching once it has found the last item for that store.
+' TO DO: Add a progress bar to show the progress of the form loading.
     ' Set theFormIsLoading to True
     theFormIsLoading = True
     
@@ -20,6 +22,17 @@ Public Sub LoadForm()
     yesNoAnswer = MsgBox("Store " & storeNumStr & vbCrLf & _
            "Is this the correct store number?", vbYesNo, "Store Number Confirmation")
     If yesNoAnswer = vbNo Then Exit Sub
+
+    ' Search for the store number in the camRegions range
+    Dim camRegion As Range
+    Set camRegion = camRegions.Find(What:=storeNum, LookIn:=xlFormulas, LookAt:=xlWhole)
+    ' If the store number is not found, display a message box and exit the sub
+    If camRegion Is Nothing Then
+        MsgBox "Store " & storeNumStr & " does not match any cameras.", vbExclamation, "Cameras Not Found"
+    Else
+        ' Set the wsCameras worksheet to the regional cameras sheet
+        Set wsCameras = ThisWorkbook.Sheets(camRegion.Offset(0, 1).Value & "Cameras")
+    End If
 
     ' Unprotect the wsForm sheet
     wsForm.Unprotect Password:="Be Happe"
@@ -80,7 +93,7 @@ Public Sub LoadForm()
     ' This will serve as a short-list of the camera rows for the selected store
     On Error Resume Next
     For i = 1 To wsCameras.Columns("B").Cells.Count
-        If wsCameras.Cells(i, 2).Value = storeNumStr Then
+        If wsCameras.Cells(i, 2).Value = storeNum Then
             ' The Add method of a collection in VBA takes two arguments: the item to add, and
             ' a unique key to associate with the item. Here, the item is the range of cells, and
             ' the key is the string representation of i (CStr(i)). The CStr function is used to
@@ -177,6 +190,12 @@ Public Sub LoadForm()
     'Change font color of cell A3 to red and no strikethrough to indicate active step
     wsForm.Cells(3, 1).Font.Color = RGB(255, 0, 0)
     wsForm.Cells(3, 1).Font.Strikethrough = False
+    'Change font color of cell A4 to black and no strikethrough to indicate future step
+    wsForm.Cells(4, 1).Font.Color = RGB(0, 0, 0)
+    wsForm.Cells(4, 1).Font.Strikethrough = False
+    'Change font color of cell A5 to black and no strikethrough to indicate future step
+    wsForm.Cells(5, 1).Font.Color = RGB(0, 0, 0)
+    wsForm.Cells(5, 1).Font.Strikethrough = False
     'Change all four border walls of cell A8 to black with a thin border
     For Each border In Array(xlEdgeTop, xlEdgeBottom, xlEdgeLeft, xlEdgeRight)
         wsForm.Cells(8, 1).Borders(border).Color = RGB(0, 0, 0)
