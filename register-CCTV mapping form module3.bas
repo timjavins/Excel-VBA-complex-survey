@@ -76,6 +76,13 @@ Public Sub CreateCameraDropdown(activeRow As Integer, activeColumn As Integer)
     'Change Step 3 font color to red, no strikethrough
     wsForm.Cells(4, 1).Font.Strikethrough = False
     wsForm.Cells(4, 1).Font.Color = RGB(255, 0, 0)
+    'Change Step 4 font color to black, no strikethrough
+    wsForm.Cells(5, 1).Font.Strikethrough = False
+    wsForm.Cells(5, 1).Font.Color = RGB(0, 0, 0)
+    'Remove the all four border walls of cell D8
+    For Each border In Array(xlEdgeTop, xlEdgeBottom, xlEdgeLeft, xlEdgeRight)
+        wsForm.Cells(8, 4).Borders(border).LineStyle = xlNone
+    Next border
     'Protect the sheet
     wsForm.Protect Password:="Be Happe", UserInterfaceOnly:=True
     Module5.CheckAllFields
