@@ -1,4 +1,10 @@
 ' Description: Code module 1 for the Register-CCTV Mapping Form
+
+' Configuration constants
+Public Const FORM_PASSWORD As String = "Be Happe"
+Public Const BASE_DATA_PATH As String = "\\A0319P1116\file_repo\inbound\APREGUPDATE\"
+
+' Public variables
 Public wsForm As Worksheet
 Public wsCameras As Worksheet
 Public wsPOSregisters As Worksheet
@@ -37,7 +43,7 @@ Public Sub InitializeForm()
     Set regNum = wsPOSregisters.Range("F:F")
     theFormIsLoading = True
     ' Unprotect the wsForm sheet
-    wsForm.Unprotect Password:="Be Happe"
+    wsForm.Unprotect Password:=FORM_PASSWORD
     'Change all four border walls of cell A8 to red
     For Each border In Array(xlEdgeTop, xlEdgeBottom, xlEdgeLeft, xlEdgeRight)
         wsForm.Cells(8, 1).Borders(border).Color = RGB(255, 0, 0)
@@ -78,14 +84,14 @@ Public Sub InitializeForm()
     theFormIsLoading = False
 
     ' Protect the whole workbook except wsForm cell A8, the buttons, and the dropdown menus
-    ThisWorkbook.Protect Password:="Be Happe", Structure:=True, Windows:=False
+    ThisWorkbook.Protect Password:=FORM_PASSWORD, Structure:=True, Windows:=False
     ' Unprotect the wsForm sheet
-    wsForm.Unprotect Password:="Be Happe"
+    wsForm.Unprotect Password:=FORM_PASSWORD
     ' Lock all wsForm cells except A8 and the buttons
     wsForm.Cells.Locked = True
     wsForm.Cells(8, 1).Locked = False
     ' Macros can still run when the sheet is protected
-    wsForm.Protect Password:="Be Happe", UserInterfaceOnly:=True
+    wsForm.Protect Password:=FORM_PASSWORD, UserInterfaceOnly:=True
 
     ' The rest of this sub routine will perform update enforcement by checking
     ' the version number in a remote location.
@@ -98,7 +104,7 @@ Public Sub InitializeForm()
     
     ' Open the env.ini file
     On Error Resume Next
-    Set txtStream = fileSysObj.OpenTextFile("\\A0319P1116\file_repo\inbound\APREGUPDATE\env.ini", 1)
+    Set txtStream = fileSysObj.OpenTextFile(BASE_DATA_PATH & "env.ini", 1)
     If Err.Number <> 0 Then
         MsgBox "The version verification failed. Are you on the company network/VPN? If you are on the network, you may have an access problem.", vbExclamation, "Verification Error"
         ' MsgBox "Error opening file: " & Err.Description, vbExclamation, "File Error"

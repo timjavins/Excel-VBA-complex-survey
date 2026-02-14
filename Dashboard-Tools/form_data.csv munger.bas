@@ -1,6 +1,10 @@
 ' Description: VBA for Excel
 
-' Iterate through all rows and delete rows where column F matches "GBDQ"
+' Configuration constants
+Const TEST_USERNAME As String = "[LAN ID]"
+Const ONEDRIVE_ORG As String = "Nordstrom"  ' Change this to match your organization's OneDrive folder name
+
+' Iterate through all rows and delete rows where column F matches the test username
 Sub DeleteTesterRows()
     Dim ws As Worksheet
     Set ws = ThisWorkbook.Sheets("form_data")
@@ -8,7 +12,7 @@ Sub DeleteTesterRows()
     lastRow = ws.Cells(ws.Rows.Count, "F").End(xlUp).Row
     Dim i As Long
     For i = lastRow To 1 Step -1
-        If ws.Cells(i, "F").Value = "GBDQ" Then
+        If ws.Cells(i, "F").Value = TEST_USERNAME Then
             ws.Rows(i).Delete
         End If
     Next i
@@ -47,7 +51,7 @@ End Sub
 ' Helper function to lookup the IP address for a given NVR in a separate CSV file
 Function LookupIPFromCSV(nvr As String) As String
     Dim filePath As String
-    filePath = "C:\Users\p4bn\OneDrive - Nordstrom\Documents\Workflows\Register-Camera mapping\LP_Tech_NVR_nationwide_5_22_2024_.csv"
+    filePath = "C:\Users\" & Environ("USERNAME") & "\OneDrive - " & ONEDRIVE_ORG & "\Documents\Workflows\Register-Camera mapping\LP_Tech_NVR_nationwide_5_22_2024_.csv"
     Dim fileSysObj As Object
     Set fileSysObj = CreateObject("Scripting.FileSystemObject")
     Dim txtFile As Object
@@ -94,7 +98,7 @@ End Sub
 ' Helper function to lookup the channel number for a given NVR and camera in a separate CSV file
 Function LookupChannelFromCSV(nvr As String, camera As String) As String
     Dim filePath As String
-    filePath = "C:\Users\p4bn\OneDrive - Nordstrom\Documents\Workflows\Register-Camera mapping\NW Cameras-cleaned.csv"
+    filePath = "C:\Users\" & Environ("USERNAME") & "\OneDrive - " & ONEDRIVE_ORG & "\Documents\Workflows\Register-Camera mapping\NW Cameras-cleaned.csv"
     Dim fileSysObj As Object
     Set fileSysObj = CreateObject("Scripting.FileSystemObject")
     Dim txtFile As Object

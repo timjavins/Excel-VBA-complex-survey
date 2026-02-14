@@ -1,7 +1,7 @@
 ' Description: Code module 4 for the Register-CCTV Mapping Form
 Public Sub AddPortChannelStoreNums(activeRow As Integer, activeColumn As Integer)
     ' Unprotect the wsForm sheet
-    wsForm.Unprotect Password:="Be Happe"
+    wsForm.Unprotect Password:=FORM_PASSWORD
 
     ' Get the selected Camera
     Set camCell = wsForm.Cells(activeRow, activeColumn)
@@ -49,7 +49,7 @@ Public Sub AddPortChannelStoreNums(activeRow As Integer, activeColumn As Integer
     End If
     On Error GoTo 0
     ' Protect the wsForm sheet
-    wsForm.Protect Password:="Be Happe", UserInterfaceOnly:=True
+    wsForm.Protect Password:=FORM_PASSWORD, UserInterfaceOnly:=True
 
     Module5.CheckAllFields
 End Sub

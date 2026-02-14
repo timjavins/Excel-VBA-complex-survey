@@ -19,7 +19,7 @@ Public Sub SubmitAnswers()
     Dim NetworkErrors As Boolean
 
     ' Set the file path for the CSV file
-    filePath = "\\A0319P1116\file_repo\inbound\APREGUPDATE\" & Environ("USERNAME") & "_form_data.csv"
+    filePath = BASE_DATA_PATH & Environ("USERNAME") & "_form_data.csv"
     On Error Resume Next
     ' Set the range to append to CSV
     rowCount = POSList.Count + 10
@@ -92,7 +92,7 @@ Public Sub SubmitAnswers()
     On Error Resume Next
     ' Set the file path for the "Completed Stores" file
     Dim completedStoresPath As String
-    completedStoresPath = "\\A0319P1116\file_repo\inbound\APREGUPDATE\Completed Stores.csv"
+    completedStoresPath = BASE_DATA_PATH & "Completed Stores.csv"
     ' Open/create the "Completed Stores" file for appending
     Dim completedStores As Object
     Set completedStores = fileSysObj.OpenTextFile(completedStoresPath, 8, True)

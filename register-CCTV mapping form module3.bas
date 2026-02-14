@@ -18,7 +18,7 @@ Public Sub CreateCameraDropdown(activeRow As Integer, activeColumn As Integer)
         NVRCell.Offset(0, 1).Value = "No camera"
     Else
         'unprotect the sheet
-        wsForm.Unprotect Password:="Be Happe"
+        wsForm.Unprotect Password:=FORM_PASSWORD
         On Error Resume Next
         ' Loop through the storePOSCamRows collection to find the related cameras for the selected NVR
 '        Dim i As Long
@@ -84,6 +84,6 @@ Public Sub CreateCameraDropdown(activeRow As Integer, activeColumn As Integer)
         wsForm.Cells(8, 4).Borders(border).LineStyle = xlNone
     Next border
     'Protect the sheet
-    wsForm.Protect Password:="Be Happe", UserInterfaceOnly:=True
+    wsForm.Protect Password:=FORM_PASSWORD, UserInterfaceOnly:=True
     Module5.CheckAllFields
 End Sub

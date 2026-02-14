@@ -35,7 +35,7 @@ Public Sub LoadForm()
     End If
 
     ' Unprotect the wsForm sheet
-    wsForm.Unprotect Password:="Be Happe"
+    wsForm.Unprotect Password:=FORM_PASSWORD
 
     ' Reset the submit button and delete it
     On Error Resume Next
@@ -210,7 +210,7 @@ Public Sub LoadForm()
     wsForm.ScrollArea = "A1:C" & wsForm.Rows.Count
 
     'Protect the sheet
-    wsForm.Protect Password:="Be Happe", UserInterfaceOnly:=True
+    wsForm.Protect Password:=FORM_PASSWORD, UserInterfaceOnly:=True
     ' Set theFormIsLoading back to False
     theFormIsLoading = False
 End Sub
