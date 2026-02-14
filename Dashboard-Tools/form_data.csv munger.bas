@@ -1,8 +1,8 @@
 ' Description: VBA for Excel
 
 ' Configuration constants
-Const TEST_USERNAME As String = "[LAN ID]"
-Const ONEDRIVE_ORG As String = "Nordstrom"  ' Change this to match your organization's OneDrive folder name
+Const TEST_USERNAME As String = "[LAN ID]" ' Change this to match the test username you want to filter out
+Const ONEDRIVE_ORG As String = "[COMPANY]"  ' Change this to match your organization's OneDrive folder name
 
 ' Iterate through all rows and delete rows where column F matches the test username
 Sub DeleteTesterRows()

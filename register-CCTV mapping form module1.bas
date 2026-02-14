@@ -1,8 +1,8 @@
 ' Description: Code module 1 for the Register-CCTV Mapping Form
 
 ' Configuration constants
-Public Const FORM_PASSWORD As String = "Be Happe"
-Public Const BASE_DATA_PATH As String = "\\A0319P1116\file_repo\inbound\APREGUPDATE\"
+Public Const FORM_PASSWORD As String = "[PASSWORD]" ' Update this to the desired password for protecting the form. Make sure to keep it secure and not share it with unauthorized users.
+Public Const BASE_DATA_PATH As String = "[NETWORK PATH TO DATA FOLDER]" ' Update this to the actual network path where the data folder is located. Make sure to include the trailing backslash.
 
 ' Public variables
 Public wsForm As Worksheet
