@@ -3,6 +3,7 @@
 ' Configuration constants
 Const TEST_USERNAME As String = "[LAN ID]" ' Change this to match the test username you want to filter out
 Const ONEDRIVE_ORG As String = "[COMPANY]"  ' Change this to match your organization's OneDrive folder name
+Const FILE_PATH As String = "[Folder path to the NVR_data.csv file]" ' Change this to the actual path of your NVR data file on OneDrive
 
 ' Iterate through all rows and delete rows where column F matches the test username
 Sub DeleteTesterRows()
@@ -51,7 +52,7 @@ End Sub
 ' Helper function to lookup the IP address for a given NVR in a separate CSV file
 Function LookupIPFromCSV(nvr As String) As String
     Dim filePath As String
-    filePath = "C:\Users\" & Environ("USERNAME") & "\OneDrive - " & ONEDRIVE_ORG & "\Documents\Workflows\Register-Camera mapping\LP_Tech_NVR_nationwide_5_22_2024_.csv"
+    filePath = "C:\Users\" & Environ("USERNAME") & "\OneDrive - " & ONEDRIVE_ORG & FILE_PATH
     Dim fileSysObj As Object
     Set fileSysObj = CreateObject("Scripting.FileSystemObject")
     Dim txtFile As Object
