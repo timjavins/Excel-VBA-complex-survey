@@ -99,7 +99,7 @@ End Sub
 ' Helper function to lookup the channel number for a given NVR and camera in a separate CSV file
 Function LookupChannelFromCSV(nvr As String, camera As String) As String
     Dim filePath As String
-    filePath = "C:\Users\" & Environ("USERNAME") & "\OneDrive - " & ONEDRIVE_ORG & "\Documents\Workflows\Register-Camera mapping\NW Cameras-cleaned.csv"
+    filePath = "C:\Users\" & Environ("USERNAME") & "\OneDrive - " & ONEDRIVE_ORG & FILE_PATH & "-cleaned+mapped.csv"
     Dim fileSysObj As Object
     Set fileSysObj = CreateObject("Scripting.FileSystemObject")
     Dim txtFile As Object
