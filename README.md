@@ -24,13 +24,13 @@ This repository contains a **generic Excel/VBA template** for mapping one set of
 By default, the code looks for neutral sheet names and falls back to legacy names:
 
 - `FORM`
-- `Terminals` (fallback: `POSregisters`)
+- `Terminals` (fallback: `EdgeUnits`)
   - Column E: Location ID
   - Column F: Terminal ID
 - `Locations` (fallback: `Regions`)
   - Column A: Location ID
   - Column B: Location Group key used to locate a device sheet
-- `<LocationGroup>Devices` (fallback: `<LocationGroup>Cameras`)
+- `<LocationGroup>Devices` (fallback: `<LocationGroup>Assets`)
   - Columns B:F used as location/controller/port/channel/endpoint mapping source
 
 ## Configuration
@@ -74,18 +74,3 @@ This template assumes:
 ## Data handling and privacy disclaimer
 
 This repository is a template. Do **not** commit real production datasets, credentials, customer information, or sensitive identifiers. Generated CSV outputs may contain operator usernames and timestamps depending on your configuration.
-
-## Migration notes (renamed files)
-
-Legacy names were genericized:
-
-- `register-CCTV mapping form module*.bas` -> `asset-mapping form module*.bas`
-- `register-CCTV mapping form workbook module.bas` -> `asset-mapping form workbook module.bas`
-- `worksheet POSregisters module.bas` -> `worksheet Terminals module.bas`
-- `Dashboard-Tools/CamPOSJoinedList-step2.vb` -> `Dashboard-Tools/DeviceAssetJoinedList-step2.vb`
-- `Dashboard-Tools/CamPOSListProcessing.vb` -> `Dashboard-Tools/DeviceAssetListProcessing.vb`
-- `Dashboard-Tools/CleanRegionalCams.vb` -> `Dashboard-Tools/CleanLocationDevices.vb`
-- `Dashboard-Tools/RegionalList Generator.vb` -> `Dashboard-Tools/LocationListGenerator.vb`
-- `Dashboard-Tools/Submission dashboard WIP.vb` -> `Dashboard-Tools/SubmissionDashboardTemplate.vb`
-- `Dashboard-Tools/form_data.csv munger.bas` -> `Dashboard-Tools/asset_mapping_data_csv_munger.bas`
-- `Dashboard-Tools/Munge the form_data file.ipynb` -> `Dashboard-Tools/Munge the asset_mapping_data file.ipynb`
